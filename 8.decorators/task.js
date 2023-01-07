@@ -7,3 +7,9 @@ function cachingDecoratorNew(func) {
 function debounceDecoratorNew(func, delay) {
   
 }
+
+//
+
+function debounceDecorator2(func) {
+
+}
