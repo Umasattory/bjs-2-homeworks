@@ -9,13 +9,13 @@ class PrintEditionItem {
 
   fix() {
     this.state = this.state * 1.5;
-  };
+  }
 
   set state(amount) {
     if (amount < 0) {
-      this._state = 0;
-    } else if (this.state > 100) {
-      this._state = 100;
+      this.state = 0;
+    } else if (amount > 100) {
+      this.state = 100;
     } else {
       this._state = amount;
     }
@@ -77,7 +77,7 @@ class Library {
   findBookBy(_type, value) {
     const findBook = this.books.find(item => item[_type] === value);
     if (findBook !== undefined) {
-      console.log(`Произведение по пораметру "${_type}" со значением "${value}" - Найден`)
+      console.log(`Произведение по пораметру "${_type}" со значением "${value}" - Найден`) // Контрольная строка (не по заданию) для контроля работаспособности
       return findBook || null;
     }
   }
@@ -87,7 +87,7 @@ class Library {
     if (giveBook !== -1) {
       const bookInd = this.books[giveBook];
       this.books.splice(bookInd, 1);
-      console.log("Читателю выдана книга '" + bookName + "'");
+      console.log("Читателю выдана книга '" + bookName + "'"); // Контрольная строка (не по заданию) для контроля работаспособности
       return bookInd || null;
     }
   }
@@ -98,16 +98,16 @@ class Library {
 console.log("-----------------------------------------------------------------")
 const sherlock = new PrintEditionItem("Полное собрание повести и рассказы о Шерлоке Холмсе", 2019, 1008)
 console.log(sherlock.releaseDate); //2019
-sherlock.state = 105; //100
+sherlock.state = 90;
 console.log(sherlock.state)
 sherlock.fix();
-console.log(sherlock.state); //100
+console.log(sherlock.state);
 console.log("-----------------------------------------------------------------")
 const library = new Library("Библиатека имени В.И.Ленина");
-library.addBook(new DetectiveBook("Артур Конан Дойл", "Полное собрание повестей и рассказов о Шерлоке Холмсе в одном томе", 2019, 1008));
-library.addBook(new FantasticBook("Аркадий и Борис Стругацкие", "Пикник на обочине", 1972, 168));
-library.addBook(new NovelBook("Герберт Уэллс", "Машина времени", 1895, 138));
-library.addBook(new Magazine("Мурзилка", 1924, 60));
+const book1 = library.addBook(new DetectiveBook("Артур Конан Дойл", "Полное собрание повестей и рассказов о Шерлоке Холмсе в одном томе", 2019, 1008));
+const book2 = library.addBook(new FantasticBook("Аркадий и Борис Стругацкие", "Пикник на обочине", 1972, 168));
+const book3 = library.addBook(new NovelBook("Герберт Уэллс", "Машина времени", 1895, 138));
+const book4 = library.addBook(new Magazine("Мурзилка", 1924, 60));
 
 library.findBookBy('name', 'Пикник на обочине');
 library.giveBookByName('Пикник на обочине');
