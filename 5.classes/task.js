@@ -11,13 +11,13 @@ class PrintEditionItem {
     this.state = this.state * 1.5;
   }
 
-  set state(amount) {
-    if (amount < 0) {
+  set state(value) {
+    if (value < 0) {
       this.state = 0;
-    } else if (amount > 100) {
+    } else if (value > 100) {
       this.state = 100;
     } else {
-      this._state = amount;
+      this._state = value;
     }
   }
 
@@ -93,6 +93,39 @@ class Library {
   }
 };
 
+//_____________________________________Задание____________________________________________ //
+class Student {
+  constructor(name) {
+    this.name = name;
+    this.marks = [];
+  }
+  addMark(mark, subject) {
+    if (mark > 0 && mark < 6) {
+      this.marks.push([mark, subject]);
+    } else {
+      console.log(`Ошибка ввода ${mark}, оценка должна быть в пределах 1 - 5!`);
+    }
+  }
+  getAverage() {
+    let sum = 0;
+    for (let i = 0; i < this.marks.length; i++) {
+      sum += this.marks[i][0];
+    }
+    return (sum / this.marks.length);
+  }
+  getAverageBySubject(subjectName) {
+    let arr = [];
+    let sum = 0;
+    for (let i = 0; i < this.marks.length; i++) {
+      if (this.marks[i][1] === subjectName) {
+        sum += this.marks[i][0];
+        arr.push(this.marks[i][0]);
+      }
+    }
+    return (sum / arr.length);
+  }
+}
+
 //_____________________________________Задание____________________________________________//
 
 console.log("-----------------------------------------------------------------")
@@ -111,6 +144,17 @@ const book4 = library.addBook(new Magazine("Мурзилка", 1924, 60));
 
 library.findBookBy('name', 'Пикник на обочине');
 library.giveBookByName('Пикник на обочине');
+console.log(library.books)
 
 console.log("-----------------------------------------------------------------")
-console.log(library.books)
+
+const student = new Student("Олег Никифоров");
+student.addMark(5, "химия");
+student.addMark(5, "химия");
+student.addMark(5, "физика");
+student.addMark(4, "физика");
+student.addMark(3, "физика"); // Оценка не добавится, так как больше 5
+student.getAverageBySubject("физика"); // Средний балл по предмету физика 4.5
+student.getAverageBySubject("биология"); // Вернёт 0, так как по такому предмету нет никаких оценок.
+student.getAverage(); // Средний балл по всем предметам 4.75
+console.log(student)
