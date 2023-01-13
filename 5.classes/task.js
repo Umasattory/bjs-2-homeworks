@@ -94,37 +94,7 @@ class Library {
 };
 
 //_____________________________________Задание____________________________________________ //
-class Student {
-  constructor(name) {
-    this.name = name;
-    this.marks = [];
-  }
-  addMark(mark, subject) {
-    if (mark > 0 && mark < 6) {
-      this.marks.push([mark, subject]);
-    } else {
-      console.log(`Ошибка ввода ${mark}, оценка должна быть в пределах 1 - 5!`);
-    }
-  }
-  getAverage() {
-    let sum = 0;
-    for (let i = 0; i < this.marks.length; i++) {
-      sum += this.marks[i][0];
-    }
-    return (sum / this.marks.length);
-  }
-  getAverageBySubject(subjectName) {
-    let arr = [];
-    let sum = 0;
-    for (let i = 0; i < this.marks.length; i++) {
-      if (this.marks[i][1] === subjectName) {
-        sum += this.marks[i][0];
-        arr.push(this.marks[i][0]);
-      }
-    }
-    return (sum / arr.length);
-  }
-}
+
 
 //_____________________________________Задание____________________________________________//
 
@@ -148,13 +118,58 @@ console.log(library.books)
 
 console.log("-----------------------------------------------------------------")
 
+class Student {
+  constructor(name) {
+    this.name = name;
+    this.marks = {};
+  }
+  addMark(mark, subject) {
+    if (mark < 2 && mark > 5 ) {
+      console.log(`Невалидная оценка ${mark}`)
+      return;
+    }
+
+    if (this.marks[0] === undefined) {
+      this.marks[subject] = [mark];
+    } else {
+      this.marks[1].push(mark)
+    }
+
+
+    //this.marks[subject].push(mark)
+  }
+  
+/*   getAverage() {
+    let sum = 0;
+    for (let i = 0; i < this.marks.length; i++) {
+      sum += this.marks[i][0];
+    }
+    return (sum / this.marks.length);
+  }
+  getAverageBySubject(subjectName) {
+    let arr = [];
+    let sum = 0;
+    for (let i = 0; i < this.marks.length; i++) {
+      if (this.marks[i][1] === subjectName) {
+        sum += this.marks[i][0];
+        arr.push(this.marks[i][0]);
+      }
+    }
+    return (sum / arr.length);
+  } */
+}
+
 const student = new Student("Олег Никифоров");
 student.addMark(5, "химия");
-student.addMark(5, "химия");
+student.addMark(5, "Литература");
+student.addMark(7, "химия");
 student.addMark(5, "физика");
-student.addMark(4, "физика");
-student.addMark(3, "физика"); // Оценка не добавится, так как больше 5
-student.getAverageBySubject("физика"); // Средний балл по предмету физика 4.5
+student.addMark(5, "Чтение");
+student.addMark(5, "Алгебра");
+student.addMark(6, "физика");
+student.addMark(8, "физика"); // Оценка не добавится, так как больше 5
+/* student.getAverageBySubject("физика"); // Средний балл по предмету физика 4.5
 student.getAverageBySubject("биология"); // Вернёт 0, так как по такому предмету нет никаких оценок.
-student.getAverage(); // Средний балл по всем предметам 4.75
+student.getAverage(); // Средний балл по всем предметам 4.75 */
 console.log(student)
+console.log("-----------------------------------------------------------------")
