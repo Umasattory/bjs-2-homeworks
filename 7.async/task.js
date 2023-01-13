@@ -31,8 +31,7 @@ class AlarmClock {
   };
 
   getCurrentFormattedTime() {
-    const currentTime = new Date().toLocaleTimeString("ru", { hour: '2-digit', minute: '2-digit' });
-    return currentTime;
+    return new Date().toLocaleTimeString("ru", { hour: '2-digit', minute: '2-digit' });
   };
 
   start() {
@@ -60,8 +59,8 @@ class AlarmClock {
   };
 
   clearAlarms() {
-    this.alarmCollection.stop;
-    this.alarmCollection.forEach((item) => this.alarmCollection.splice(item));
+    this.stop();
+    this.alarmCollection = [];
   };
 
 };
