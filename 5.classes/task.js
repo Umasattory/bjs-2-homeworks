@@ -8,14 +8,14 @@ class PrintEditionItem {
   }
 
   fix() {
-    this.state = this.state * 1.5;
+    this.state *= 1.5;
   }
 
   set state(value) {
     if (value < 0) {
-      this.state = 0;
+      this._state = 0;
     } else if (value > 100) {
-      this.state = 100;
+      this._state = 100;
     } else {
       this._state = value;
     }
@@ -77,19 +77,21 @@ class Library {
   findBookBy(_type, value) {
     const findBook = this.books.find(item => item[_type] === value);
     if (findBook !== undefined) {
-      console.log(`Произведение по пораметру "${_type}" со значением "${value}" - Найден`) // Контрольная строка (не по заданию) для контроля работаспособности
-      return findBook || null;
+//  console.log("Найдена книга " + "'" + findBook.name + "'") // Контрольная строка (не по заданию) для контроля работаспособности
+      return findBook || null
     }
   }
 
   giveBookByName(bookName) {
-    const giveBook = this.books.findIndex(item => item.name === bookName);
-    if (giveBook !== -1) {
-      const bookInd = this.books[giveBook];
-      this.books.splice(bookInd, 1);
-      console.log("Читателю выдана книга '" + bookName + "'"); // Контрольная строка (не по заданию) для контроля работаспособности
-      return bookInd || null;
+    const bookIndex = this.books.findIndex(item => item.name === bookName);
+    const giveBook = this.books[bookIndex];
+    if (bookIndex !== -1) {
+      this.books.splice(giveBook, 1);
+//    console.log("Читателю выдана книга '" + bookName + "'"); // Контрольная строка (не по заданию) для контроля работаспособности
+    } else {
+      return null
     }
+    return giveBook;
   }
 };
 
@@ -112,12 +114,14 @@ const book2 = library.addBook(new FantasticBook("Аркадий и Борис С
 const book3 = library.addBook(new NovelBook("Герберт Уэллс", "Машина времени", 1895, 138));
 const book4 = library.addBook(new Magazine("Мурзилка", 1924, 60));
 
-library.findBookBy('name', 'Пикник на обочине');
-library.giveBookByName('Пикник на обочине');
-console.log(library.books)
-
+library.findBookBy('author', 'Артур Конан Дойл');
 console.log("-----------------------------------------------------------------")
-
+library.findBookBy('releaseDate', 1977);
+console.log("-----------------------------------------------------------------")
+library.giveBookByName('Пикник на обочине');
+console.log("-----------------------------------------------------------------")
+console.log(library.books);
+console.log("-----------------------------------------------------------------")
 class Student {
   constructor(name) {
     this.name = name;
