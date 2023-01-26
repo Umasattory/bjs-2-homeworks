@@ -77,7 +77,7 @@ class Library {
   findBookBy(_type, value) {
     const findBook = this.books.find(item => item[_type] === value);
     if (findBook !== undefined) {
-//  console.log("Найдена книга " + "'" + findBook.name + "'") // Контрольная строка (не по заданию) для контроля работаспособности
+    //console.log("Найдена книга " + "'" + findBook.name + "'") // Контрольная строка (не по заданию) для контроля работаспособности
       return findBook || null
     }
   }
@@ -87,7 +87,7 @@ class Library {
     const giveBook = this.books[bookIndex];
     if (bookIndex !== -1) {
       this.books.splice(giveBook, 1);
-//    console.log("Читателю выдана книга '" + bookName + "'"); // Контрольная строка (не по заданию) для контроля работаспособности
+      //console.log("Читателю выдана книга '" + bookName + "'"); // Контрольная строка (не по заданию) для контроля работаспособности
     } else {
       return null
     }
