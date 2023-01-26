@@ -122,6 +122,8 @@ library.giveBookByName('Пикник на обочине');
 console.log("-----------------------------------------------------------------")
 console.log(library.books);
 console.log("-----------------------------------------------------------------")
+
+console.log("-----------------------------------------------------------------")
 class Student {
   constructor(name) {
     this.name = name;
@@ -138,29 +140,7 @@ class Student {
     } else {
       this.marks[1].push(mark)
     }
-
-
-    //this.marks[subject].push(mark)
   }
-  
-/*   getAverage() {
-    let sum = 0;
-    for (let i = 0; i < this.marks.length; i++) {
-      sum += this.marks[i][0];
-    }
-    return (sum / this.marks.length);
-  }
-  getAverageBySubject(subjectName) {
-    let arr = [];
-    let sum = 0;
-    for (let i = 0; i < this.marks.length; i++) {
-      if (this.marks[i][1] === subjectName) {
-        sum += this.marks[i][0];
-        arr.push(this.marks[i][0]);
-      }
-    }
-    return (sum / arr.length);
-  } */
 }
 
 const student = new Student("Олег Никифоров");
