@@ -27,14 +27,14 @@ class Triangle {
     this.lineC = lineC;
   }
   get perimeter() {
-    return this.lineA + this.lineB + this.lineC;
+    return String(this.lineA + this.lineB + this.lineC);
   }
 
   get area() {
     // p = half of perimeter
     const p = this.perimeter / 2;
     const areaTr = Math.sqrt(p * (p - this.lineA) * (p - this.lineB) * (p - this.lineC));
-    return Number(areaTr.toFixed(2));
+    return String(Number(areaTr.toFixed(2)));
   }
 };
 
