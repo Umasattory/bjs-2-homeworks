@@ -22,7 +22,7 @@ function cachingDecoratorNew(func) {
    return wrapper;
 }
 
-/* Задача № 1 -------------------------  с md5 задача не выполняется (тестоввая страничка не проходит)
+/* Задача № 1 -------------------------------  с md5 задача не выполняется (тестоввую страничку не проходит)
 function cachingDecoratorNew(func) {
    const cache = [];
    function wrapper(...args) {
@@ -85,11 +85,14 @@ function debounceDecorator2(func) {
    let timerId;
    function wrapper(...args) {
       if (timerId) {
+         wrapper.count=1;
+         wrapper.allCount=1;
          func.apply(this, ...args);
       }
       clearTimeout(timerId);
       timerId = setTimeout(() => timerId = null, 0);
-      wrapper.count++;
+      wrapper.allCount++;
+      wrapper.count++
    }
    return wrapper;
 }
